@@ -3,9 +3,9 @@ import datetime
 import webbrowser
 import time
 
-version = 'v1.0'
+version = 'v1.1'
 print('Version ' + version)
-print('pyOS made by Aiden Thompson')
+print('pyOS made by flightyfigment0')
 loop = 0
 login_status = 0
 print(" _ __  _   _  ___  ___ ")
@@ -70,11 +70,23 @@ while loop == 0:
     elif login_status == 0:
         print("Please log in first.")
     elif command_line == "open":
-        choosen_file = input("Enter file to open: ")
-        if choosen_file == "notepad":
-            os.system("notepad.exe")
-        elif choosen_file == "browser":
-            webbrowser.open("https://www.google.com")
+        choosen_file = input("")
+        if choosen_file == ('notepad'):
+            os.system("/Windows/notepad.exe")
+        elif choosen_file == ('browser'):
+            os.system("\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\"")
+        elif choosen_file == ('blender'):
+            os.system("\"C:/Users/141301/AppData/Local/Temp/quit.blend\"")
+        elif choosen_file == ('taskmanger') or choosen_file == ("tskmngr"):
+            os.system("\"C:\Windows\System32\Taskmgr.exe\"")
+        elif choosen_file == ('files'):
+            os.system("\"C:\Windows\explorer.exe\"")
+        elif choosen_file == ("word"):
+            os.system("\"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Word.lnk\"")
+        elif choosen_file == ("onenote"):
+            os.system("\"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OneNote.lnk\"")
+        elif choosen_file == ("mail") or ("outlook"):
+            os.system("\"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Outlook.lnk\"")
         # Add other file opening commands here
     elif command_line == ('time'):
     # Get the current time
@@ -162,7 +174,7 @@ while loop == 0:
     elif command_line == ('info'):
         #print("Username: "+username)
         print('Version '+version)
-        print('pyOS made by Aiden Thompson')
+        print('pyOS made by flightyfigment0')
 
 
 
@@ -174,38 +186,3 @@ while loop == 0:
 
     else:
         print("not a valid command")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
