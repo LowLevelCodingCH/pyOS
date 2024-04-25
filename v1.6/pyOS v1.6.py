@@ -7,35 +7,48 @@ import platform
 import subprocess
 import re
 
+logo = """
+ _ __  _   _  ___  ___ 
+| '_ \| | | |/ _ \/ __|
+| |_) | |_| | (_) \__ \ 
+| .__/ \__, |\___/|___/
+| |     __/ |          
+|_|    |___/          .
+"""
 
+
+# If a linux user uses this, then it won't work, here:
 try:
-    color_settings = open('colorsettings.txt', 'r')
-    color = color_settings.read()
-    color_settings.close()
-    if color.strip() == 'red':
-        os.system('color 4')
-    elif color.strip() == 'blue':
-        os.system('color 1')
-    elif color.strip == 'green':
-        os.system('color.strip 2')
-    elif color.strip == ('aqua'):
-        os.system('color 3')
-    elif color.strip == ('purple'):
-        os.system('color 5')
-    elif color.strip == ('white'):
+    try:
+        color_settings = open('colorsettings.txt', 'r')
+        color = color_settings.read()
+        color_settings.close()
+        if color.strip() == 'red':
+            os.system('color 4')
+        elif color.strip() == 'blue':
+            os.system('color 1')
+        elif color.strip == 'green':
+            os.system('color.strip 2')
+        elif color.strip == ('aqua'):
+            os.system('color 3')
+        elif color.strip == ('purple'):
+            os.system('color 5')
+        elif color.strip == ('white'):
+            os.system('color 7')
+        elif color == ('grey'):
+            os.system('color 8')
+    except FileNotFoundError:
+        print('Error: color settings file not found. Default color assumed.')
         os.system('color 7')
-    elif color == ('grey'):
-        os.system('color 8')
-except FileNotFoundError:
-    print('Error: color settings file not found. Default color assumed.')
-    os.system('color 7')
-version = 'v1.6'
+except:
+    print("Main OS not Windows!")
+version = 1.6 # Make this like that
 try:
     with open("log.txt",'r') as f1:
         print('_______________________________________')
         f1 = open('log.txt','r')
         print(f1.read())
-        print("pyOS "+version+" Booting Up...")
+        print("pyOS v"+version+" Booting Up...") # Readded the "v"
         print('_______________________________________')
 except FileNotFoundError:
     print(" _ __  _   _  ___  ___ ")
@@ -48,14 +61,17 @@ except FileNotFoundError:
    
 time.sleep(5)
 loop = 0
-list_commands = ['signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21']
+list_commands = ['rmuser', 'adduser', 'signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21'] # added addusr and removeusr command
 username = 0
 
 login_status = 0
 
 def help_command():
-    print(list_commands)
-
+    i = 0
+    for cmd in list_commands:
+        if i >= 4:
+            print("\n", end="")
+        print(cmd)
 def check_existing_username(username):
     with open("users.txt", "r") as file:
         existing_usernames = file.readlines()
@@ -64,6 +80,13 @@ def check_existing_username(username):
             return True
         else:
             return False
+            
+def remove_user(username):
+    with open("users.txt", "r") as file:
+        f = file.read()
+        f.replace(username, "")
+        with open("users.txt", "w") as filepointer:
+            filepointer.write(f)
 
 def add_user(username):
     with open("users.txt", "a") as file:
@@ -93,7 +116,10 @@ def login():
     else:
         print("you are all ready logged in")
 
-
+# In the loop, make the command_line.split(" ") function to make arguments work like so: "open notepad", not like:
+# open
+# notepad
+# just do command_line.split(" ") and then index it like an array: command_line[0] # first arg, command_line[1] # second arg etc.. and if there are too few, handle that, if len(command_line) < min_arg_len: print("Too Few Arguments")
 loop = 0
 print('type help for a list of Commands')
 while loop == 0:
@@ -118,7 +144,7 @@ while loop == 0:
         if choosen_file == ('notepad'):
             os.system("/Windows/notepad.exe")
         elif choosen_file == ('browser'):
-            os.system("\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\"")
+            os.system("\"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\"") # wont work on linux
         #elif choosen_file == ('blender'):
            # os.system("\"C:/Users/141301/AppData/Local/Temp/quit.blend\"")
         elif choosen_file == ('taskmanger') or choosen_file == ("tskmngr"):
@@ -137,6 +163,12 @@ while loop == 0:
         else:
             print('not a supported app')
         # Add other file opening commands here
+    elif command_line == 'adduser':
+        adduser(input("User to add: "))
+        # just do this
+    elif command_line == 'rmuser':
+        adduser(input("User to remove: "))
+        # just do this
     elif command_line == ('time'):
     # Get the current time
         current_time = datetime.datetime.now()
@@ -273,24 +305,8 @@ while loop == 0:
     elif command_line == ("logo"):
         edit = input("what text do you want to add: ")
         if edit == ('reset') or edit == ('defualt'):
-            f = open('log.txt', "w")
-            f.write(' _ __  _   _  ___  ___\n')
-            f.close()
-            f = open('log.txt', 'a')
-            f.write("| '_ \| | | |/ _ \/ __|\n")
-            f.close()
-            f = open('log.txt', 'a')
-            f.write("| |_) | |_| | (_) \__ \ \n")
-            f.close()
-            f = open('log.txt', 'a')
-            f.write("| .__/ \__, |\___/|___/ \n")
-            f.close
-            f = open('log.txt', 'a')
-            f.write("| |     __/ | \n")
-            f.close()
-            f = open('log.txt', 'a')
-            f.write("|_|    |___/  \n")
-            f.close()
+            with open("log.txt", "w") as f:
+                f.write(logo) # made it good
         else:
             f = open('log.txt', "w")
             f.write(edit)
@@ -329,7 +345,7 @@ while loop == 0:
                 print('---------------------------------------')
                 f1 = open('log.txt','r')
                 print(f1.read())
-                print("pyOS "+version+" Booting Up...")
+                print("pyOS v"+version+" Booting Up...")
                 print("---------------------------------------")
         except FileNotFoundError:
             print(" _ __  _   _  ___  ___ ")
@@ -338,53 +354,8 @@ while loop == 0:
             print("| .__/ \__, |\___/|___/")
             print("| |     __/ |          ")
             print("|_|    |___/          .")
-            print('pyOS'+version+"Booting Up...")
-        
-
-
-
-
-
-
-
-        
-        
+            print('pyOS v'+version+"Booting Up...")
 
 
     else:
         print("not a valid command")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
