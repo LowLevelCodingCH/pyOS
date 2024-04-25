@@ -48,7 +48,7 @@ try:
         print('_______________________________________')
         f1 = open('log.txt','r')
         print(f1.read())
-        print("pyOS v"+version+" Booting Up...") # Readded the "v"
+        print("pyOS v"+str(version)+" Booting Up...") # Readded the "v"
         print('_______________________________________')
 except FileNotFoundError:
     print(" _ __  _   _  ___  ___ ")
@@ -57,7 +57,7 @@ except FileNotFoundError:
     print("| .__/ \__, |\___/|___/")
     print("| |     __/ |          ")
     print("|_|    |___/          .")
-    print('pyOS'+version+"Booting Up...")
+    print('pyOS'+str(version)+"Booting Up...")
    
 time.sleep(5)
 loop = 0
@@ -345,7 +345,7 @@ while loop == 0:
                 print('---------------------------------------')
                 f1 = open('log.txt','r')
                 print(f1.read())
-                print("pyOS v"+version+" Booting Up...")
+                print("pyOS v"+str(version)+" Booting Up...")
                 print("---------------------------------------")
         except FileNotFoundError:
             print(" _ __  _   _  ___  ___ ")
@@ -354,7 +354,7 @@ while loop == 0:
             print("| .__/ \__, |\___/|___/")
             print("| |     __/ |          ")
             print("|_|    |___/          .")
-            print('pyOS v'+version+"Booting Up...")
+            print('pyOS v'+str(version)+"Booting Up...")
 
 
     else:
