@@ -164,10 +164,10 @@ while loop == 0:
             print('not a supported app')
         # Add other file opening commands here
     elif command_line == 'adduser':
-        adduser(input("User to add: "))
+        add_user(input("User to add: "))
         # just do this
     elif command_line == 'rmuser':
-        adduser(input("User to remove: "))
+        remove_user(input("User to remove: "))
         # just do this
     elif command_line == ('time'):
     # Get the current time
