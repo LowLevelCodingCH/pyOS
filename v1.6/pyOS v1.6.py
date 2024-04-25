@@ -299,7 +299,7 @@ while loop == 0:
         print("CPU Model:", cpu_model)
         print("Architecture:", architecture)
         print("System:", system)
-        print('Version '+version)
+        print('Version '+str(version))
         print("device name:",socket.gethostname())
         print('pyOS made by flightyfigment0')
     elif command_line == ("logo"):
