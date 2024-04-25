@@ -61,7 +61,7 @@ except FileNotFoundError:
    
 time.sleep(5)
 loop = 0
-list_commands = ['rmuser', 'adduser', 'signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21'] # added addusr and removeusr command
+list_commands = ['exit', 'rmuser', 'adduser', 'signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21'] # added addusr and removeusr command
 username = 0
 
 login_status = 0
@@ -101,7 +101,7 @@ def main():
         beans = new_username
     else:
         newuser_answer = input("would ou like this to be a new account (y/n):")
-        if newuser_answer == ('y') or newuser_answer == ('yes'):
+        if newuser_answer.lower() == ('y') or newuser_answer.lower() == ('yes'):
             add_user(new_username)
             print("User", new_username, "added successfully!")
         else:
@@ -130,7 +130,8 @@ while loop == 0:
     elif command_line == "signout":
         login_status = 0
         main()
-   
+    elif command_line == "exit":
+	    loop = 1
     elif command_line == "open":
         print('supported apps :')
         print('1.notepad')
