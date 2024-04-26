@@ -48,7 +48,7 @@ try:
         print('_______________________________________')
         f1 = open('log.txt','r')
         print(f1.read())
-        print("pyOS v"+version+" Booting Up...") # Readded the "v"
+        print("pyOS v"+str(version)+" Booting Up...") # Readded the "v"
         print('_______________________________________')
 except FileNotFoundError:
     print(" _ __  _   _  ___  ___ ")
@@ -57,11 +57,11 @@ except FileNotFoundError:
     print("| .__/ \__, |\___/|___/")
     print("| |     __/ |          ")
     print("|_|    |___/          .")
-    print('pyOS'+version+"Booting Up...")
+    print('pyOS'+str(version)+"Booting Up...")
    
 time.sleep(5)
 loop = 0
-list_commands = ['rmuser', 'adduser', 'signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21'] # added addusr and removeusr command
+list_commands = ['exit', 'rmuser', 'adduser', 'signout', 'open', 'time', 'crash', 'cal', 'link', 'color', 'theentireshrekmoviescript', 'txt', 'edittxt', 'info','21'] # added addusr and removeusr command
 username = 0
 
 login_status = 0
@@ -101,7 +101,7 @@ def main():
         beans = new_username
     else:
         newuser_answer = input("would ou like this to be a new account (y/n):")
-        if newuser_answer == ('y') or newuser_answer == ('yes'):
+        if newuser_answer.lower() == ('y') or newuser_answer.lower() == ('yes'):
             add_user(new_username)
             print("User", new_username, "added successfully!")
         else:
@@ -130,7 +130,8 @@ while loop == 0:
     elif command_line == "signout":
         login_status = 0
         main()
-   
+    elif command_line == "exit":
+	    loop = 1
     elif command_line == "open":
         print('supported apps :')
         print('1.notepad')
@@ -164,10 +165,10 @@ while loop == 0:
             print('not a supported app')
         # Add other file opening commands here
     elif command_line == 'adduser':
-        adduser(input("User to add: "))
+        add_user(input("User to add: "))
         # just do this
     elif command_line == 'rmuser':
-        adduser(input("User to remove: "))
+        remove_user(input("User to remove: "))
         # just do this
     elif command_line == ('time'):
     # Get the current time
@@ -299,7 +300,7 @@ while loop == 0:
         print("CPU Model:", cpu_model)
         print("Architecture:", architecture)
         print("System:", system)
-        print('Version '+version)
+        print('Version '+str(version))
         print("device name:",socket.gethostname())
         print('pyOS made by flightyfigment0')
     elif command_line == ("logo"):
@@ -345,7 +346,7 @@ while loop == 0:
                 print('---------------------------------------')
                 f1 = open('log.txt','r')
                 print(f1.read())
-                print("pyOS v"+version+" Booting Up...")
+                print("pyOS v"+str(version)+" Booting Up...")
                 print("---------------------------------------")
         except FileNotFoundError:
             print(" _ __  _   _  ___  ___ ")
@@ -354,7 +355,7 @@ while loop == 0:
             print("| .__/ \__, |\___/|___/")
             print("| |     __/ |          ")
             print("|_|    |___/          .")
-            print('pyOS v'+version+"Booting Up...")
+            print('pyOS v'+str(version)+"Booting Up...")
 
 
     else:
