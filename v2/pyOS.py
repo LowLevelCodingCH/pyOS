@@ -195,7 +195,7 @@ except FileNotFoundError:
     print('Error: color settings file not found. Default color assumed.')
     os.system('color 7')
 
-version = 'v2 beta'
+version = 'V2'
 
 
 try:
@@ -224,7 +224,7 @@ except Exception as e:
     print(f"An unexpected error occurred: {e}")
 
 loop = 0
-list_commands = '''
+list_commands = r'''
 link - opens inputed link
 open - opens inputed app
 txt - makes txt file with selected name
@@ -242,7 +242,7 @@ displaylogo - displays current logo
 count - counts to set number
 reset - deletes all data
 _________________________________________________________________________________________________________
-|pyOS V2 NEW FEATURES \^o^/                                                                              |
+|pyOS V2 NEW FEATURES AND UPDATES \^o^/                                                                  |
 |________________________________________________________________________________________________________|
 pokemon - pokedex thanks to the pokeapi
 exit - closes pyOS
@@ -255,8 +255,8 @@ playmp4 - play any mp4 in the MP4 folder
 dirtree - displays all directorys
 create_folder - creates folder in specifed location
 echo - works like count but with words
-[clsloop - sets the setting clsloop(clear the screen every time the main loop happens)NEEDS WORK]
-pyos github - takes you to the homepage for the github repostory(excuse my spelling if in correct i suck)'''
+pyos github - takes you to the homepage for the github repostory(excuse my spelling if in correct i suck)
+'''
 
 
 
