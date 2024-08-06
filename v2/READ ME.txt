@@ -1,0 +1,1 @@
+before running the pyOS.py file run the .bat file with python installed
