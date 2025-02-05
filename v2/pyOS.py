@@ -19,15 +19,17 @@ from datetime import datetime
 import requests
 
 def clssetting():
-    settings = open(r"D:\clsonloop.txt", 'r')
-    CLEARONLOOP = settings.read()
-    settings.close()
-    if CLEARONLOOP.strip() == 'Y':
-        CLEAR = True
-        #global CLEAR
-    elif CLEARONLOOP.strip() == 'N':
-        CLEAR = False
-        #global CLEAR
+    try:
+        with open(r"D:\clsonloop.txt", 'r') as settings:
+            CLEARONLOOP = settings.read()
+        if CLEARONLOOP.strip() == 'Y':
+            CLEAR = True
+            #global CLEAR
+        elif CLEARONLOOP.strip() == 'N':
+            CLEAR = False
+            #global CLEAR
+    except:
+        print("Didn't find D:clsonloop.txt")
 
 def create_folders(parent_dir, folder_names):
     for folder_name in folder_names:
@@ -129,16 +131,14 @@ class MEMORYSTATUSEX(ctypes.Structure):
                 ("ullTotalVirtual", ctypes.c_ulonglong),
                 ("ullAvailVirtual", ctypes.c_ulonglong),
                 ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+#UNUSED:
+#def get_total_physical_memory():
+#    mem_status = MEMORYSTATUSEX()
+#    mem_status.dwLength = ctypes.sizeof(mem_status)
+#    ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(mem_status))
+#    return mem_status.ullTotalPhys / (1024 ** 3)  # Convert from bytes to gigabytes
 
-def get_total_physical_memory():
-    mem_status = MEMORYSTATUSEX()
-    mem_status.dwLength = ctypes.sizeof(mem_status)
-    ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(mem_status))
-    return mem_status.ullTotalPhys / (1024 ** 3)  # Convert from bytes to gigabytes
-
-total_ram_gb = get_total_physical_memory()
-
-
+#UNUSED: total_phys_gb = get_total_physical_memory()
 
 def get_ram_size():
     kernel32 = ctypes.windll.kernel32
@@ -368,36 +368,31 @@ while loop == 0:
     elif command_line == ('exit'):
         break
     elif command_line == ("cal"):
-        print(' _______________________________________')
-        print('|Calculator                             |')
+        print('----------------------------------------')
+        print('|            Calculator                |')
         print('¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯')
         cal_input = input("what operation do you want:")
-        if cal_input == ('add'):
-            varb1 = input("first number: ")
-            varb2 = input("second number: ")
-            answer = int(varb1) + int(varb2)
-            print(answer)
-        elif cal_input == ('sub'):
-            varb1 = input("first number: ")
-            varb2 = input("second number: ")
-            answer
-            answer = int(varb1) - int(varb2)
-            print(answer)
-        elif cal_input == ('multi'):
-            varb1 = input("first number: ")
-            varb2 = input("second number: ")
-            answer = int(varb1) * int(varb2)
-            print(answer)
-        elif cal_input == ('divde'):
-            varb1 = input("first number: ")
-            varb2 = input("second number: ")
-            answer = int(varb1) / int(varb2)
-            print(answer)
+        try:
+            cal_arguments = cal_input.split(" ")
+            if(cal_arguments.len() > 3):
+                print("Too few arguments: expected 3:")
+                print("    OPERATION OPERAND OPERAND")
+        except:
+            print("Exception")
+        
+        if cal_arguments[0] == "add":
+            print(f"Result: {cal_arguments[1]+cal_arguments[2]}")
+        elif cal_arguments[0] == "sub":
+            print(f"Result: {cal_arguments[1]-cal_arguments[2]}")
+        elif cal_arguments[0] == "mul":
+            print(f"Result: {cal_arguments[1]*cal_arguments[2]}")
+        elif cal_arguments[0] == "div":
+            print(f"Result: {cal_arguments[1]/cal_arguments[2]}")
     elif command_line.startswith('color'):
-        chosen_color = command_line.split(" ")[-1]
+        chosen_color = command_line.split(" ")[1]
         color = chosen_color
-        print(' _______________________________________')
-        print('|Color settings                        |')
+        print('----------------------------------------')
+        print('|           Color settings             |')
         print('¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯')
         if chosen_color == 'red':
             os.system('color 4')
@@ -681,7 +676,7 @@ while loop == 0:
         while echo_loop:
             print('|', echo, '|')
     elif command_line == 'rr':
-        webbrowser.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D')
+        webbrowser.open('youtu.be/dQw4w9WgXcQ') #removed unnessecary junk
     
     elif command_line == ('clsloop'):
         settings = open(r"D:\clsonloop.txt", 'w')
